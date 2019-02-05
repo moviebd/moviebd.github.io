@@ -41,7 +41,7 @@
                 <div id="main-video-wrap">
                 
 <link href='/css/plyr.css' rel='stylesheet'></link>
-<div class="js-player" id="main-video" data-plyr-embed-id="{{ video_path }}"  data-plyr-provider='youtube'></div>
+<div class="js-player" id="main-video" data-plyr-embed-id="{{ preferred_video_path }}"  data-plyr-provider='youtube'></div>
 <script src='/js/plyr.js'></script>
 <script>/*<![CDATA[*/
 const players = Array.from(document.querySelectorAll('.js-player')).map(player => new Plyr(player));
