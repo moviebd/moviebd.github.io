@@ -12,3 +12,72 @@ id{font-size:0px;display:none;width:0;height:0;}
 .tap_active { display: inline-block;background: #EAAB0C;color: #000!important;height: 25px;line-height: 25px;padding: 0 10px;min-width: 45px;text-align: center;font-weight: 700;border-radius: 4px;margin: 5px;}
 .sv_active{margin-top: 4px;display: block;float: left;border-bottom: 2px solid #CA8800;padding-bottom: 0;padding-left: 0;width: 100%;color: #CA8800;}
 #logoplayer {background: url(https://4.bp.blogspot.com/-7SK6MIIqmQo/WwaYuIwVinI/AAAAAAAAA5Q/S5cwexVdx1Ylh667OQDIV7E9hxeSKVwXQCLcBGAs/s320/LogoMakr_4vPbcY.png) no-repeat;float:left;display:inline-block;position:absolute;width:200px;height:45px;margin: 330px 500px;filter:alpha(opacity=45);opacity:.45;}
+
+
+
+.post-body {
+    position: relative;
+    z-index: 1;
+ }
+.tbn_css_frame_wrap {
+    width: 100%;
+    max-width: ;
+    
+}
+.tbn_css_frame_wrap_inner {
+    position: relative;
+    padding-bottom: 53%;
+    height: 0;
+    background-color: #000 !important;
+    border: 15px solid #CACACA;
+}
+.tbn_css_frame_wrap_inner iframe,
+.tbn_css_frame_wrap_inner object,
+.tbn_css_frame_wrap_inner embed {
+    position:absolute;
+    top:0;
+    width:100%;
+    height:100%;
+}
+.bottomshadows
+{
+  position: relative;
+}
+.bottomshadows:before, .bottomshadows:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 0px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-4deg);
+  -moz-transform: rotate(-4deg);
+  -o-transform: rotate(-4deg);
+  -ms-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+}
+.bottomshadows:after
+{
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+  -o-transform: rotate(4deg);
+  -ms-transform: rotate(4deg);
+  transform: rotate(4deg);
+  right: 10px;
+  left: auto;
+}
+@media all and (max-width: 400px) {
+.tbn_css_frame_wrap_inner {
+    border: 7px solid #CACACA !important;
+}
+.bottomshadows:before, .bottomshadows:after {
+    bottom: 9px !important;
+} }
+
