@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    {% capture preferred_video_path %}{{ site.video-baseurl }}{{ page.video-id }}-{{ site.data.resolutions[page.video-id].resolutions[0] }}p{% endcapture %}
+    {% capture preferred_video_width %}{{ site.data.resolutions[page.video-id].preferred_resolution_dims.w }}{% endcapture %}
+    {% capture preferred_video_height %}{{ site.data.resolutions[page.video-id].preferred_resolution_dims.h }}{% endcapture %}
+    {% capture video_duration_iso8601 %}{{ site.data.resolutions[page.video-id].duration_iso8601 }}{% endcapture %}
+    {% capture video_description_text %}{{ content | strip_html | newline_to_br | strip_newlines | replace: '<br /><br />', ' ' | remove: '<br />' }}{% endcapture %}
+    <meta name="description" content="{{ video_description_text }}" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "VideoObject",
+      "name": "{{ page.title }}",
+      "description": "{{ video_description_text }}",
+      "thumbnailUrl": "{{ site.video-baseurl }}{{ page.video-id }}.jpg",
+      "uploadDate": "{{ page.date | date_to_xmlschema }}",
+      "contentUrl": "{{ preferred_video_path }}.mp4",
+      "duration": "{{ video_duration_iso8601 }}"
+    }
+    </script>
+    <!-- Open Graph -->
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url | remove_first: '/'}}" />
+    <meta property="og:image" content="{{ site.video-baseurl }}{{ page.video-id }}.jpg" />
+    <meta property="og:video" content="{{ preferred_video_path }}.mp4" />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content="{{ preferred_video_width }}" />
+    <meta property="og:video:height" content="{{ preferred_video_height }}" />
+    <meta property="og:description" content="{{ video_description_text }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+  </head>
+  <body>
+      <div class="outer">
+        {% include header.html %}
+        <div class="pagewrap">
+            <main>
+                <div id="main-video-wrap">
+                    <video id="main-video" controls="controls" autoplay="autoplay" poster="{{ site.video-baseurl }}{{ page.video-id }}.jpg">
+                        <source src="{{ preferred_video_path }}.webm" type='video/webm; codecs="vp9,opus"'>
+                        <source src="{{ preferred_video_path }}.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card video-header">
+                    <h1 class="video-title">{{ page.title }}</h1>
+                    <div class="video-options-wrap">
+                        <div class="channel-wrap">
+                            <img class="channel-logo" src="{{ site.url }}img/channel-image.png" alt="Channel Logo">
+                            <span class="channel-name">{{ site.author.name }}</span><br />
+                            {% if site.subscribe-button-url %}<a class="subscribe-button button" target="_blank" href="{{ site.subscribe-button-url }}">Subscribe</a>{% endif %}
+                        </div>
+                        <div class="share-embed-wrap">
+                            <div class="quality-select-wrap">
+                                Video Quality: 
+                                <select id="quality-select" autocomplete="off">
+                                    {% for res in site.data.resolutions[page.video-id].resolutions %}
+                                        <option value="{{ res }}">{{ res }}p</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="share-wrap">
+                                <span class="sharethis">Share this video: </span>
+                                <ul class="sharebuttons">
+                                        <li class="share-item">
+                                            <a class="share-link ico-facebook" onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" rel="nofollow" target="_blank"></a>
+                                        </li>
+                                        <li class="share-item">
+                                            <a class="share-link ico-twitter" onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" rel="nofollow" target="_blank"></a>
+                                        </li>
+                                        <li class="share-item">
+                                            <a class="share-link ico-google" onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" rel="nofollow" target="_blank"></a>
+                                        </li>
+                                </ul>
+                            </div>
+                            {% if site.allow-video-embeds %}
+                                or <a class="get-embed" href="javascript:void(0);">Embed</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card video-details">
+                    <span class="card-title publish-date">Published on
+                        <time datetime="{{ page.date | date_to_xmlschema }}">
+                            {% assign d = page.date | date: "%-d" %} 
+                            {% assign m = page.date | date: "%B" %} 
+
+                            {% case m %}
+                              {% when 'April' or 'May' or 'June' or 'July' %}{{ m }}
+                              {% when 'September' %}Sept
+                              {% else %}{{ page.date | date: "%b" }}
+                            {% endcase %}
+                              {{ d }},
+                            {{ page.date | date: "%Y" }}
+                       </time>
+                    </span>
+                    <div class="video-description">
+                        {{ content }}
+                    </div>
+                </div>
+            </main>
+            <div class="sidebar">
+                {% for category in page.categories %}
+                    <div class="video-card next-videos" data-category-name="{{ category | slugify }}">
+                        <span class="card-title next-videos-title">Up next in "<span class="category-title">{{ category }}</span>"</span>
+                        {% assign num_posts = 0 %}
+                        {% assign posts = site.categories[category] %}
+                        {% for post in posts %}
+                            {% if post.url == page.url %}
+                                {% assign curr_page_idx = forloop.index %}
+                                {% for num in (1..site.up-next-count) %}
+                                    {% assign curr_page = posts[curr_page_idx] %}
+                                    {% unless curr_page %}{% break %}{% endunless %}
+                                    <div class="suggested-vid-wrap"><a href="{{ site.url}}{{ curr_page.url | remove_first: '/' }}"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ curr_page.video-id }}-small.jpg" alt="{{ curr_page.title }}"></a><a class="vid-link" href="{{ site.url}}{{ curr_page.url | remove_first: '/' }}"><span class="vid-thumbnail-title">{{ curr_page.title }}</span></a></div>
+                                    {% assign curr_page_idx = curr_page_idx | plus:1 %}
+                                    {% assign num_posts = num_posts | plus:1 %}
+                                {% endfor %}
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                        <span class="meta-posts-count">{{ num_posts }}</span>
+                    </div>
+                {% endfor %}
+                <div class="video-card playlists">
+                    <span class="card-title playlists-title">Playlists</span>
+                    {% for category in site.categories %}
+                        {% capture category_title %}{{ category | first }}{% endcapture %}
+                        {% unless category_title == 'uploads' %}{% continue %}{% endunless %}
+                        {% for pages in category %}
+                            {% for page in pages limit:1 %}
+                                        {% unless page.video-id %}{% continue %}{% endunless %}
+                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ page.video-id }}-small.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% for category in site.categories %}
+                        {% capture category_title %}{{ category | first }}{% endcapture %}
+                        {% if category_title == 'uploads' %}{% continue %}{% endif %}
+                        {% for pages in category %}
+                            {% for page in pages limit:1 %}
+                                        {% unless page.video-id %}{% continue %}{% endunless %}
+                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ page.video-id }}-small.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% if site.disqus-shortname %}
+                <div class="video-card disqus-container">
+                    <div id="disqus_thread"></div>
+                    <script>
+                    var disqus_config = function () {
+                        this.page.url = "{{ site.url }}{{ page.url | remove_first: '/'}}";
+                        this.page.identifier = "{{ page.video-id }}";
+                    };
+                    
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+
+                        s.src = '//{{ site.disqus-shortname }}.disqus.com/embed.js';
+
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                </div>
+            {% endif %}
+        </div>
+        {% include footer.html %}
+    </div>
+    <script>
+        /* Initialize embed button */
+
+        var embed_buttons = document.getElementsByClassName("get-embed");
+
+        for (var i = 0; i < embed_buttons.length; i++) {
+            var btn = embed_buttons[i];
+            btn.onclick = function() {
+                PopupCenter("{{ site.url }}get-embed/?id={{ page.video-id }}", "Video Embed", 300, 200);
+            }
+        }
+        
+        /* Interactify video quality selector */
+        
+        var selector = document.getElementById("quality-select");
+        var video = document.getElementById("main-video");
+        var video_path = "{{ preferred_video_path }}";
+        
+        selector.addEventListener("change", function() {
+            var current_time = video.currentTime;
+            
+            var new_res = this.options[this.selectedIndex].value;
+            video.innerHTML = ''; // Clear sources
+            
+            var source1 = document.createElement('source');
+            source1.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + "p.webm";
+            source1.type = 'video/webm; codecs="vp9,opus"';
+            video.appendChild(source1);
+            
+            var source2 = document.createElement('source');
+            source2.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + "p.mp4";
+            source2.type = "video/mp4";
+            video.appendChild(source2);
+            
+            if (video.paused) video.autoplay = false;
+            else video.autoplay = true;
+            
+            video.load();
+            video.currentTime = current_time;
+        });
+    </script>
+    {% include js.html %}
+    <script src="{{ site.url }}js/watch.js"></script>
+  </body>
+</html>

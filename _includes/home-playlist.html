@@ -1,0 +1,35 @@
+<div class="video-card category-listing">
+    <a href="{{ site.url }}{{ category_title | slugify}}/"><h2 class="category-title">{{ category_title }}</h2></a>
+    <ul>
+    {% for posts in category %}
+        {% for post in posts limit:6 %}
+            {% if post.url %}
+                <li>
+                    {% capture final_post_url %}{{ site.url }}{{ post.url | remove_first: '/'}}{% unless category_title == 'uploads' %}?playlist={{ category | first | slugify }}{% endunless %}{% endcapture %}
+                    <a href="{{ final_post_url }}">
+                        <img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ post.video-id }}-small.jpg" alt="{{ post.title }}">
+                    </a>
+                    <a class="vid-link" href="{{ final_post_url }}">
+                        {{ post.title }}<br />
+                    </a>
+                    <span class="vid-date">
+                        {% assign d = post.date | date: "%-d" %} 
+                        {% assign m = post.date | date: "%B" %} 
+
+                        {% case m %}
+                          {% when 'April' or 'May' or 'June' or 'July' %}{{ m }}
+                          {% when 'September' %}Sept
+                          {% else %}{{ post.date | date: "%b" }}
+                        {% endcase %}
+                          {{ d }},
+                        {{ post.date | date: "%Y" }}
+                    </span>
+                </li>
+                {% if forloop.index == 6 %}
+                    <li class="view-more"><a href="{{ site.url }}{{ category_title | slugify }}/">View More...</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </ul>
+</div>

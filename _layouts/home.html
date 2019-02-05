@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      {% include head.html %}
+      <meta name="description" content="{{ site.description }}" />
+  </head>
+  <body>
+    <div class="outer">
+        {% include header.html %}
+        <div class="pagewrap">
+            <div class="video-card intro-description">
+                <h1 class="site-title">{{ site.title }}</h1>
+                {{ content }}
+            </div>
+            {% for category in site.categories %}
+            {% capture category_title %}{{ category | first }}{% endcapture %}
+            {% unless category_title == 'uploads' %}{% continue %}{% endunless %}
+                {% include home-playlist.html %}
+            {% endfor %}
+            
+            {% for category in site.categories %}
+            {% capture category_title %}{{ category | first }}{% endcapture %}
+            {% if category_title == 'uploads' %}{% continue %}{% endif %}
+                {% include home-playlist.html %}
+            {% endfor %}
+        </div>
+        {% include footer.html %}
+        {% include js.html %}
+    </div>
+  </body>
+</html>
