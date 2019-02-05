@@ -1,6 +1,6 @@
 ---
 title: Anc player
-video-id: //img.youtube.com/vi/yd_DlXU34k4/maxresdefault.jpg
+video-id: http://img.youtube.com/vi/yd_DlXU34k4/maxresdefault.jpg
 categories: [first custom playlist, uploads]
 date: 2019-02-01
 layout: anc
