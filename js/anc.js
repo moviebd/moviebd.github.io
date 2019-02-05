@@ -202,7 +202,7 @@ qua = '<div id="logoplayer"></div><';
 
 '<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><IFRAME SRC="'+x+' " FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>',
    //6      
-'<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><iframe width="100%" height="100%" src=http://bdix.cf/player/tube?sv='+x+'  scrolling="no" frameborder="0" allowfullscreen="true"></iframe></div></div>',
+'<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><iframe src="'+x+'?modestbranding=1&amp;controls=2&amp;showinfo=3&amp;hd=1&amp;rel=0&amp;iv_load_policy=3&amp;autohide=2&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1&amp;autoplay=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" id="playerayer" width="100%" height="420px" frameborder="0"></iframe></div></div>',
 
 
 ];
