@@ -1,0 +1,14 @@
+
+id{font-size:0px;display:none;width:0;height:0;}
+#anc_tp {background: rgba(0, 0, 0, 0);padding: 5px 0;overflow: hidden;width: 100%;position: relative;margin-bottom: 10px;}
+#list_tap{display: inline-block;line-height: 20px;width: 100%;padding: 10px 10px 5px;}
+#list_tap ul{list-style:none;margin:0;padding:0;clear:both;}
+#list_tap ul li{float:left;margin-right:1px;font-weight:800;text-align:left;}
+#list_tap ul li.sev{margin-top: 4px;display: block;float: left;border-bottom: 2px solid #6d5626;padding-bottom: 0;padding-left: 0;width: 100%;color: #6d5626;}
+#anc_pl {height:100%;}
+#anc_data img {max-width: 580px;}
+.a_tap { display: inline-block;color: #000!important;height: 25px;line-height: 25px;padding: 0 10px;min-width: 45px;text-align: center;font-weight: 700;border-radius: 4px;background: #7C0A0A;margin: 5px;}
+.a_tap:hover{text-decoration: none;background: #7C0A0A;}
+.tap_active { display: inline-block;background: #EAAB0C;color: #000!important;height: 25px;line-height: 25px;padding: 0 10px;min-width: 45px;text-align: center;font-weight: 700;border-radius: 4px;margin: 5px;}
+.sv_active{margin-top: 4px;display: block;float: left;border-bottom: 2px solid #CA8800;padding-bottom: 0;padding-left: 0;width: 100%;color: #CA8800;}
+#logoplayer {background: url(https://4.bp.blogspot.com/-7SK6MIIqmQo/WwaYuIwVinI/AAAAAAAAA5Q/S5cwexVdx1Ylh667OQDIV7E9hxeSKVwXQCLcBGAs/s320/LogoMakr_4vPbcY.png) no-repeat;float:left;display:inline-block;position:absolute;width:200px;height:45px;margin: 330px 500px;filter:alpha(opacity=45);opacity:.45;}
