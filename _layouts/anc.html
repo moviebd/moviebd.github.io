@@ -147,7 +147,7 @@
                         {% for pages in category %}
                             {% for page in pages limit:1 %}
                                         {% unless page.video-id %}{% continue %}{% endunless %}
-                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ page.video-id }}-small.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
+                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="//img.youtube.com/vi/{{ page.video-id }}/maxresdefault.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
                             {% endfor %}
                         {% endfor %}
                     {% endfor %}
@@ -157,7 +157,7 @@
                         {% for pages in category %}
                             {% for page in pages limit:1 %}
                                         {% unless page.video-id %}{% continue %}{% endunless %}
-                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ page.video-id }}-small.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
+                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="//img.youtube.com/vi/{{ page.video-id }}/maxresdefault.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
                             {% endfor %}
                         {% endfor %}
                     {% endfor %}
