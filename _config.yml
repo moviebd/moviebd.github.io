@@ -8,7 +8,7 @@ author:
   name: Shawon
   url: http://example.com/
 
-url: moviebd.github.io # Absolute path
+url: https://moviebd.github.io # Absolute path
 video-baseurl:  # Absolute path where video folder resides (can be a folder on a CDN)
 
 # ----------------------- #
