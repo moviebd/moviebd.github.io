@@ -2,14 +2,14 @@
 #      Main Configs       #
 # ----------------------- #
 
-title: OwnVideo Sample Site
+title: MovieBD
 description: My name is John Doe, and these are my videos.
 author:
-  name: John Doe
+  name: Shawon
   url: http://example.com/
 
-url: http://localhost:4000/ # Absolute path
-video-baseurl: http://localhost:4000/video/ # Absolute path where video folder resides (can be a folder on a CDN)
+url: moviebd.github.io # Absolute path
+video-baseurl:  # Absolute path where video folder resides (can be a folder on a CDN)
 
 # ----------------------- #
 #    Optional Features    #
@@ -19,7 +19,7 @@ video-baseurl: http://localhost:4000/video/ # Absolute path where video folder r
 subscribe-button-url: http://example.com/ 
 
 # If a Disqus shortname is provided here, a Disqus comment thread will be created for each video.
-disqus-shortname: 
+disqus-shortname: moviehdbd
 
 # If provided, Google Analytics tracking code will be added to every page on your site.
 # Your analytics id should be in the format "UA-XXXXXXXX-X".
