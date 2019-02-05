@@ -3,6 +3,7 @@ title: My Eighth Video
 video-id: fzjAfV-oUSM
 categories: [uploads]
 date: 2016-02-08
+layout: utube
 ---
 
 This is the CUSTOM DESCRIPTION for Video 8.
