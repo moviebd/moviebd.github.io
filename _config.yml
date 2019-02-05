@@ -5,8 +5,8 @@
 title: MovieBD
 description: My name is John Doe, and these are my videos.
 author:
-  name: Shawon
-  url: http://example.com/
+  name: Shawon Khan
+  url: fb.com/shawon.khan123
 
 url: https://moviebd.github.io/ # Absolute path
 video-baseurl:  # Absolute path where video folder resides (can be a folder on a CDN)
@@ -19,7 +19,7 @@ video-baseurl:  # Absolute path where video folder resides (can be a folder on a
 subscribe-button-url: http://example.com/ 
 
 # If a Disqus shortname is provided here, a Disqus comment thread will be created for each video.
-disqus-shortname: moviehdbd
+disqus-shortname: hdtvbd
 
 # If provided, Google Analytics tracking code will be added to every page on your site.
 # Your analytics id should be in the format "UA-XXXXXXXX-X".
