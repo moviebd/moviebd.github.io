@@ -1,6 +1,6 @@
 ---
 title: My Eighth Video
-video-id: my-eighth-video
+video-id: my-eighth-video.mp4
 categories: [uploads]
 date: 2016-02-08
 ---
