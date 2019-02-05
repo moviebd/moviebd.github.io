@@ -15,7 +15,7 @@ id{font-size:0px;display:none;width:0;height:0;}
 
 
 
-.post-body {
+.post {
     position: relative;
     z-index: 1;
  }
@@ -29,7 +29,7 @@ id{font-size:0px;display:none;width:0;height:0;}
     padding-bottom: 53%;
     height: 0;
     background-color: #000 !important;
-    border: 15px solid #CACACA;
+    border: 10px solid #CACACA;
 }
 .tbn_css_frame_wrap_inner iframe,
 .tbn_css_frame_wrap_inner object,
