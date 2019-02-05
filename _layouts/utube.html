@@ -40,9 +40,18 @@
             <main>
                 <div id="main-video-wrap">
                 
-                
-       <iframe id="main-video" src="https://www.youtube.com/embed/{{ preferred_video_path }}?rel=0&modestbranding=1&showinfo=0" width="100%" height="100%" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>         
+<link href='http://cdn.plyr.io/3.4.4/plyr.css' rel='stylesheet'></link>
+<div class="js-player" id="main-video" data-plyr-embed-id="{{ preferred_video_path }}"  data-plyr-provider='youtube'></div>
+<script src='//cdn.plyr.io/3.4.4/plyr.js'></script>
+<script>/*<![CDATA[*/
+const players = Array.from(document.querySelectorAll('.js-player')).map(player => new Plyr(player));
+/*]]>*/
+</script>
+              
                   
+        <!--          
+       <iframe id="main-video" src="https://www.youtube.com/embed/{{ preferred_video_path }}?rel=0&modestbranding=1&showinfo=0" width="100%" height="100%" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>         
+               -->   
                 </div>
                 <div class="video-card video-header">
                     <h1 class="video-title">{{ page.title }}</h1>
