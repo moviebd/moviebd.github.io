@@ -1,3 +1,8 @@
+
+<style>
+.post-view{margin-right:0px!important;display:inline;padding:4px 8px;cursor:default;transition:all .3s ease-out}
+.view-load{display:inline-block;width:20px;height:20px;background:transparent url('http://2.bp.blogspot.com/-60aISBQLRY0/VFBMqzLfzGI/AAAAAAAABgM/GInmVTvEzkc/s1600/loader.gif') no-repeat 0 0;vertical-align:middle} </style>
+
 <div class="video-card category-listing">
     <a href="{{ site.url }}{{ category_title | slugify}}/"><h2 class="category-title">{{ category_title }}</h2></a>
     <ul>
@@ -25,6 +30,7 @@
                           {{ d }},
                         {{ post.date | date: "%Y" }}
                     </span>
+                    <div class='post-view' expr:data-id='data:post.id'><i class='fa fa-eye'/> <span class='view-load' id='postviews'/></div>
                 </li>
                 {% if forloop.index == 6 %}
                     <li class="view-more"><a href="{{ site.url }}{{ category_title | slugify }}/">View More...</a></li>
@@ -34,3 +40,9 @@
     {% endfor %}
     </ul>
 </div>
+
+		<script src='//cdn.firebase.com/js/client/2.2.1/firebase.js' type='text/javascript'/>
+<script type='text/javascript'>//<![CDATA[
+$.each($(".post-view[data-id]"),function(a,e){var l=$(e).parent().find("#postviews").addClass("view-load"),i=new Firebase("s-usc1c-nss-229.firebaseio.com/pages/id/"+$(e).attr("data-id"));i.once("value",function(a){var n=a.val(),t=!1;null==n&&(n={},n.value=0,n.url=window.location.href,n.id=$(e).attr("data-id"),t=!0),l.removeClass("view-load").text(n.value),n.value++,"/"!=window.location.pathname&&(t?i.set(n):i.child("value").set(n.value))})});
+//]]>
+</script>
