@@ -15,7 +15,7 @@
       "@type": "VideoObject",
       "name": "{{ page.title }}",
       "description": "{{ video_description_text }}",
-      "thumbnailUrl": "{{ site.video-baseurl }}{{ page.video-id }}.jpg",
+      "thumbnailUrl": "//img.youtube.com/vi/{{ page.video-id }}/maxresdefault.jpg",
       "uploadDate": "{{ page.date | date_to_xmlschema }}",
       "contentUrl": "{{ preferred_video_path }}.mp4",
       "duration": "{{ video_duration_iso8601 }}"
