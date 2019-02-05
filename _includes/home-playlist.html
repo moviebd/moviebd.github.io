@@ -7,7 +7,8 @@
                 <li>
                     {% capture final_post_url %}{{ site.url }}{{ post.url | remove_first: '/'}}{% unless category_title == 'uploads' %}?playlist={{ category | first | slugify }}{% endunless %}{% endcapture %}
                     <a href="{{ final_post_url }}">
-                        <img class="vid-thumbnail" src="{{ post.video-id }}" alt="{{ post.title }}">
+                        <img class="vid-thumbnail" src="https://img.youtube.com/vi/{{ post.video-id }}/maxresdefault.jpg" alt="{{ post.title }}">
+                        
                     </a>
                     <a class="vid-link" href="{{ final_post_url }}">
                         {{ post.title }}<br />
