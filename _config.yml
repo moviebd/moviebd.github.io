@@ -9,7 +9,7 @@ author:
   url: http://example.com/
 
 url: https://moviebd.github.io/ # Absolute path
-video-baseurl: https://moviebd.github.io/source_video/ # Absolute path where video folder resides (can be a folder on a CDN)
+video-baseurl:  # Absolute path where video folder resides (can be a folder on a CDN)
 
 # ----------------------- #
 #    Optional Features    #
