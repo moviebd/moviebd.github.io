@@ -1,5 +1,4 @@
-<script type='text/javascript'>
-//<![CDATA[ 
+
 var ancplayer = {
 	load: {
 		'width': '100%',
@@ -19,9 +18,9 @@ var ancplayer = {
        'ten_sv':
       'Drive-HD:,MP4:,Ytube:,FB:,EM:,VIP-HD:,Mpro:',}
 }
-//]]></script>
-<script type='text/javascript'>
-//<![CDATA[
+
+
+
 function ancMedia() {
   url = window.location.href,
   home = ancplayer.load.site, 
@@ -208,5 +207,3 @@ qua = '<div id="logoplayer"></div><';
 ];
 }}
 var M = new ancMedia; M.Play();
- //]]>
-</script>
