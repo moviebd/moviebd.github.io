@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    {% capture preferred_video_path %}{{ site.video-baseurl }}{{ page.video-id }}-{{ site.data.resolutions[page.video-id].resolutions[0] }}p{% endcapture %}
+    {% capture preferred_video_width %}{{ site.data.resolutions[page.video-id].preferred_resolution_dims.w }}{% endcapture %}
+    {% capture preferred_video_height %}{{ site.data.resolutions[page.video-id].preferred_resolution_dims.h }}{% endcapture %}
+    {% capture video_duration_iso8601 %}{{ site.data.resolutions[page.video-id].duration_iso8601 }}{% endcapture %}
+    {% capture video_description_text %}{{ content | strip_html | newline_to_br | strip_newlines | replace: '<br /><br />', ' ' | remove: '<br />' }}{% endcapture %}
+    <meta name="description" content="{{ video_description_text }}" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "VideoObject",
+      "name": "{{ page.title }}",
+      "description": "{{ video_description_text }}",
+      "thumbnailUrl": "{{ site.video-baseurl }}{{ page.video-id }}.jpg",
+      "uploadDate": "{{ page.date | date_to_xmlschema }}",
+      "contentUrl": "{{ preferred_video_path }}.mp4",
+      "duration": "{{ video_duration_iso8601 }}"
+    }
+    </script>
+    <!-- Open Graph -->
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url | remove_first: '/'}}" />
+    <meta property="og:image" content="{{ site.video-baseurl }}{{ page.video-id }}.jpg" />
+    <meta property="og:video" content="{{ preferred_video_path }}.mp4" />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content="{{ preferred_video_width }}" />
+    <meta property="og:video:height" content="{{ preferred_video_height }}" />
+    <meta property="og:description" content="{{ video_description_text }}" />
+    <meta property="og:site_name" content="{{ site.title }}" />
+  </head>
+  <body>
+      <div class="outer">
+        {% include header.html %}
+        <div class="pagewrap">
+              
+<style type='text/css'>
+id{font-size:0px;display:none;width:0;height:0;}
+#anc_tp {background: rgba(0, 0, 0, 0);padding: 5px 0;overflow: hidden;width: 100%;position: relative;margin-bottom: 10px;}
+#list_tap{display: inline-block;line-height: 20px;width: 100%;padding: 10px 10px 5px;}
+#list_tap ul{list-style:none;margin:0;padding:0;clear:both;}
+#list_tap ul li{float:left;margin-right:1px;font-weight:800;text-align:left;}
+#list_tap ul li.sev{margin-top: 4px;display: block;float: left;border-bottom: 2px solid #6d5626;padding-bottom: 0;padding-left: 0;width: 100%;color: #6d5626;}
+#anc_pl {height:100%;}
+#anc_data img {max-width: 580px;}
+.a_tap { display: inline-block;color: #000!important;height: 25px;line-height: 25px;padding: 0 10px;min-width: 45px;text-align: center;font-weight: 700;border-radius: 4px;background: #7C0A0A;margin: 5px;}
+.a_tap:hover{text-decoration: none;background: #7C0A0A;}
+.tap_active { display: inline-block;background: #EAAB0C;color: #000!important;height: 25px;line-height: 25px;padding: 0 10px;min-width: 45px;text-align: center;font-weight: 700;border-radius: 4px;margin: 5px;}
+.sv_active{margin-top: 4px;display: block;float: left;border-bottom: 2px solid #CA8800;padding-bottom: 0;padding-left: 0;width: 100%;color: #CA8800;}
+#logoplayer {background: url(https://4.bp.blogspot.com/-7SK6MIIqmQo/WwaYuIwVinI/AAAAAAAAA5Q/S5cwexVdx1Ylh667OQDIV7E9hxeSKVwXQCLcBGAs/s320/LogoMakr_4vPbcY.png) no-repeat;float:left;display:inline-block;position:absolute;width:200px;height:45px;margin: 330px 500px;filter:alpha(opacity=45);opacity:.45;}
+</style>
+        
+        
+            <main>
+                <div id="main-video-wrap">
+
+              <div id='anc_pl'></div>
+                  
+        <!--          
+       <iframe id="main-video" src="https://www.youtube.com/embed/{{ preferred_video_path }}?rel=0&modestbranding=1&showinfo=0" width="100%" height="100%" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>         
+               -->   
+                </div>
+                
+                
+                <div id='anc_tp'></div>
+                
+                
+                
+                
+                
+                <div class="video-card video-header">
+                    <h1 class="video-title">{{ page.title }}</h1>
+                    <div class="video-options-wrap">
+                        <div class="channel-wrap">
+                            <img class="channel-logo" src="{{ site.url }}img/channel-image.png" alt="Channel Logo">
+                            <span class="channel-name">{{ site.author.name }}</span><br />
+                            {% if site.subscribe-button-url %}<a class="subscribe-button button" target="_blank" href="{{ site.subscribe-button-url }}">Subscribe</a>{% endif %}
+                        </div>
+                        <div class="share-embed-wrap">
+                            <div class="quality-select-wrap">
+                                Video Quality: 
+                                <select id="quality-select" autocomplete="off">
+                                    {% for res in site.data.resolutions[page.video-id].resolutions %}
+                                        <option value="{{ res }}">{{ res }}p</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="share-wrap">
+                                <span class="sharethis">Share this video: </span>
+                                <ul class="sharebuttons">
+                                        <li class="share-item">
+                                            <a class="share-link ico-facebook" onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" rel="nofollow" target="_blank"></a>
+                                        </li>
+                                        <li class="share-item">
+                                            <a class="share-link ico-twitter" onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" rel="nofollow" target="_blank"></a>
+                                        </li>
+                                        <li class="share-item">
+                                            <a class="share-link ico-google" onclick="javascript:window.open(this.href,
+                                  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" rel="nofollow" target="_blank"></a>
+                                        </li>
+                                </ul>
+                            </div>
+                            {% if site.allow-video-embeds %}
+                                or <a class="get-embed" href="javascript:void(0);">Embed</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="video-card video-details">
+                    <span class="card-title publish-date">Published on
+                        <time datetime="{{ page.date | date_to_xmlschema }}">
+                            {% assign d = page.date | date: "%-d" %} 
+                            {% assign m = page.date | date: "%B" %} 
+
+                            {% case m %}
+                              {% when 'April' or 'May' or 'June' or 'July' %}{{ m }}
+                              {% when 'September' %}Sept
+                              {% else %}{{ page.date | date: "%b" }}
+                            {% endcase %}
+                              {{ d }},
+                            {{ page.date | date: "%Y" }}
+                       </time>
+                    </span>
+                    <div class="video-description">
+                        {{ content }}
+                    </div>
+                </div>
+            </main>
+            <div class="sidebar">
+                {% for category in page.categories %}
+                    <div class="video-card next-videos" data-category-name="{{ category | slugify }}">
+                        <span class="card-title next-videos-title">Up next in "<span class="category-title">{{ category }}</span>"</span>
+                        {% assign num_posts = 0 %}
+                        {% assign posts = site.categories[category] %}
+                        {% for post in posts %}
+                            {% if post.url == page.url %}
+                                {% assign curr_page_idx = forloop.index %}
+                                {% for num in (1..site.up-next-count) %}
+                                    {% assign curr_page = posts[curr_page_idx] %}
+                                    {% unless curr_page %}{% break %}{% endunless %}
+                                    <div class="suggested-vid-wrap"><a href="{{ site.url}}{{ curr_page.url | remove_first: '/' }}"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ curr_page.video-id }}-small.jpg" alt="{{ curr_page.title }}"></a><a class="vid-link" href="{{ site.url}}{{ curr_page.url | remove_first: '/' }}"><span class="vid-thumbnail-title">{{ curr_page.title }}</span></a></div>
+                                    {% assign curr_page_idx = curr_page_idx | plus:1 %}
+                                    {% assign num_posts = num_posts | plus:1 %}
+                                {% endfor %}
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                        <span class="meta-posts-count">{{ num_posts }}</span>
+                    </div>
+                {% endfor %}
+                <div class="video-card playlists">
+                    <span class="card-title playlists-title">Playlists</span>
+                    {% for category in site.categories %}
+                        {% capture category_title %}{{ category | first }}{% endcapture %}
+                        {% unless category_title == 'uploads' %}{% continue %}{% endunless %}
+                        {% for pages in category %}
+                            {% for page in pages limit:1 %}
+                                        {% unless page.video-id %}{% continue %}{% endunless %}
+                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ page.video-id }}-small.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% for category in site.categories %}
+                        {% capture category_title %}{{ category | first }}{% endcapture %}
+                        {% if category_title == 'uploads' %}{% continue %}{% endif %}
+                        {% for pages in category %}
+                            {% for page in pages limit:1 %}
+                                        {% unless page.video-id %}{% continue %}{% endunless %}
+                                        <div class="suggested-vid-wrap"><a href="{{ site.url }}{{ category | first | slugify }}/"><img class="vid-thumbnail" src="{{ site.video-baseurl }}{{ page.video-id }}-small.jpg" alt="{{ category | first }}"></a><a href="{{ site.url }}{{ category | first | slugify }}/"><span class="vid-thumbnail-title category-title">{{ category | first }}</span></a></div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% if site.disqus-shortname %}
+                <div class="video-card disqus-container">
+                    <div id="disqus_thread"></div>
+                    <script>
+                    var disqus_config = function () {
+                        this.page.url = "{{ site.url }}{{ page.url | remove_first: '/'}}";
+                        this.page.identifier = "{{ page.video-id }}";
+                    };
+                    
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+                        s.src = '//{{ site.disqus-shortname }}.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                </div>
+            {% endif %}
+        </div>
+        {% include footer.html %}
+    </div>
+    <script>
+        /* Initialize embed button */
+        var embed_buttons = document.getElementsByClassName("get-embed");
+        for (var i = 0; i < embed_buttons.length; i++) {
+            var btn = embed_buttons[i];
+            btn.onclick = function() {
+                PopupCenter("{{ site.url }}get-embed/?id={{ page.video-id }}", "Video Embed", 300, 200);
+            }
+        }
+        
+        /* Interactify video quality selector */
+        
+        var selector = document.getElementById("quality-select");
+        var video = document.getElementById("main-video");
+        var video_path = "{{ preferred_video_path }}";
+        
+        selector.addEventListener("change", function() {
+            var current_time = video.currentTime;
+            
+            var new_res = this.options[this.selectedIndex].value;
+            video.innerHTML = ''; // Clear sources
+            
+            var source1 = document.createElement('source');
+            source1.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + "p.webm";
+            source1.type = 'video/webm; codecs="vp9,opus"';
+            video.appendChild(source1);
+            
+            var source2 = document.createElement('source');
+            source2.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + "p.mp4";
+            source2.type = "video/mp4";
+            video.appendChild(source2);
+            
+            if (video.paused) video.autoplay = false;
+            else video.autoplay = true;
+            
+            video.load();
+            video.currentTime = current_time;
+        });
+    </script>
+    {% include js.html %}
+    <script src="{{ site.url }}js/watch.js"></script>
+    
+    
+    
+    
+    
+    
+
+<script type='text/javascript'>
+//<![CDATA[ 
+
+var ancplayer = {
+	load: {
+		'width': '100%',
+		'height': '100%',
+		'player': '',
+		'proxy': '/',
+		'skin': '/',
+		'getlink': '',
+		'imgload': '',
+		'autoplay': 'false',
+		'embedplay': '0',
+		'site': '/hdtvbd.blogspot.com/'
+	},
+	sv: {
+		'list_sv': 
+'anc.gn',
+       'ten_sv':
+      'Grind:',}
+}
+//]]></script>
+<script type='text/javascript'>
+//<![CDATA[
+function ancMedia() {
+  url = window.location.href,
+  home = ancplayer.load.site, 
+  server_i = [0];
+    part = new Array; 
+  sv = ancplayer.sv.list_sv.split(",");
+  tensv = ancplayer.sv.ten_sv.split(",");
+  width = ancplayer.load.width;
+  height = ancplayer.load.height;
+  player = ancplayer.load.player;
+  proxy = ancplayer.load.proxy;
+  skin = ancplayer.load.skin;
+  imgload = ancplayer.load.imgload; 
+  tmget = ancplayer.load.getlink; 
+  auto = ancplayer.load.autoplay;
+  eauto = ancplayer.load.embedplay;
+
+	var $_  = function(x){return document.getElementById(x);}
+    this.fu  = function (x, y, z) {
+		if (y == null && z == null) {
+			return document.getElementById(x).innerHTML;
+		} else { if (y != null && z == null) 
+		       { document.getElementById(x).innerHTML = y }
+		  else { document.getElementById(x).style[z] = y }
+		}
+	};
+
+	this.read = function () {
+		b = this.fu("anc_data"),
+		c = '<div id="b_data" style="display:none !important;">',
+		d = '</div>',
+		b = b.replace(/\<id\>/gi, c),
+		b = b.replace(/\<\/id\>/gi, d);
+		b = b.replace(/\[id\]/gi, c),
+		b = b.replace(/\[\/id\]/gi, d),
+		this.fu("anc_data", b);
+		if(b.indexOf("anc*") != -1){
+		b = this.fu("b_data");
+		b = b.replace("anc*","");
+		b = b.substring(0,b.length);
+	    b = decodeanc(b);
+		if(b.indexOf("|") <= 0) {b = ";" + b + "|" };
+	}	else{b = this.fu("b_data"); if(b.indexOf("|") <= 0) {b = ";" + b + "|" };}
+		return  b
+	};
+	
+data = this.read();
+  
+l_spi = data.split("|").length; 
+l_spk = function(x) {return data.split("|")[x].split(";").length;};
+d_spi = function(x) {return data.split("|")[x];};
+d_spk = function(x, y) {return data.split("|")[x].split(";")[y];};
+pc = ["0","a","b","c","d","e","f","g","h","i","k","l","m","n","o","p","q","r","s"];
+
+  svt = "";
+  svx = 0;
+
+
+this.setCookie = function(c_name,value,exdays) {
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+};
+this.getCookie = function(c_name) {
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++){
+x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+x=x.replace(/^\s+|\s+$/g,"");
+if (x==c_name){return unescape(y);}}
+};
+  
+this.Play = function() {
+for(var s = 0;s < tensv.length ;s++) {var svr = tensv[s].split(".")[0];if(svr == ""){svr = home;}part[s] = '<li id="sev_'+s+'" class="sev" style="font-size: 15px;margin-bottom: 15px;">'+svr+' <li><li class="clear"></li>' }
+for (var i = 0; i < l_spi -1; i++) {
+for (var j = 0; j < l_spk(i); j++) 
+{ name = d_spk(i, 0); link = d_spk(i, j);
+name = 2 == l_spk(i) ? d_spk(i, 0) : name == d_spk(i + 1, 0) || !Number(name) ? name + pc[j] : name + pc[j];
+
+for(var s = 0;s < sv.length; s++) {
+//if(d_spk(0, 1).indexOf(sv[s]) != -1) { this.setCookie("ancplayer", s , 365); }
+if (d_spk(0, 1).indexOf(sv[s]) != -1) {this.setCookie("_ancServer", s, 365); }
+if(link.indexOf(sv[s]) != -1) { 
+if(sv[s]) {data_out = '<li class="ep"><a class="a_tap" id="ep_'+i+'" href="?xem='+s+'-'+i+'-'+j+'" title="'+name+' - '+home+'" >'+name+'</a></li>' } 
+part[s] += data_out } } } }
+
+for(var s = 0;s < sv.length; s++) {
+if(part[s].indexOf(home) != -1) {
+svt += '<ul id="server_'+svx+'" > '+part[s]+' <div class="clear"></div></ul>';		
+server_i[s] = svx.toString();
+svx++
+}}
+
+svt = '<div id="list_tap"> '+svt+' <div class="clear"></div></div><div class="clear"></div>';
+
+this.fu("anc_tp", svt);
+this.getUrl()
+};
+
+
+this.getUrl = function() {
+  String.prototype.GetPart = function(dcmm) {
+    var vltn = new RegExp("(^|&)" + dcmm + "=([^&]*)(&|$)");
+    var clgt = this.substr(this.indexOf("?") + 1).match(vltn);
+    if (clgt != null) {
+      return unescape(clgt[2]);
+    }
+    return null;
+  };
+  
+
+
+	//if(part_Url == null) { part_Url = ""+laylinksv+"-0-1" }
+    part_Url = url.GetPart("xem");
+    if(part_Url == null) { part_Url = this.getCookie("_ancServer") + "-0-1" }	
+    part_Url = part_Url.split("-");
+    pserver = part_Url[0];
+    pepisode = part_Url[1];
+    pelink = part_Url[2];
+	
+    var bh = this.fu("server_0");
+    var bj = this.fu("server_" + server_i[pserver]);
+    this.fu("server_" + server_i[pserver], bh);
+    this.fu("server_0", bj);
+	document.getElementById("ep_" + pepisode).className = "tap_active";
+	document.getElementById("sev_" + pserver).className = "sv_active";
+
+	if (!d_spk(pepisode, pelink)) {window.location.href = url.split("?")[0];} 
+	else {this.load(d_spk(pepisode, pelink));}
+		
+  };
+  
+this.load = function(x) {	
+
+if(x.indexOf(sv[0]) != -1){x = x.replace(/anc\.gn\/http/gi,"http");obj = DBOj(x)[0];} //grind
+if(x.indexOf(sv[1]) != -1){x = x.replace(/\#sub=/gi,"&sub="); obj = DBOj(x)[1]} //amrtv
+
+this.fu("anc_pl", obj)
+}; 
+   
+var DBOj = function(x){	
+rut = '<iframe width="100%" height="'+height+'" src="';
+qua = '<div id="logoplayer"></div><';
+	return obj = [
+	// grind 
+'<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><object data="//www.hlsplayer.net/player/grindplayer/GrindPlayer.swf" id="playerayer" height="'+width+'" id="player" style="visibility: visible;" type="application/x-shockwave-flash" width="'+width+'"><param value="true" name="allowFullScreen"><param value="always" name="allowScriptAccess"><param value="opaque" name="wmode"><param value="autoPlay=true&src='+x+'&streamType=live&scaleMode=letterbox&plugin_hls=//www.hlsplayer.net/player/grindplayer/flashlsOSMF.swf&hls_debug=false&hls_debug2=false&hls_minbufferlength=-1&hls_lowbufferlength=2&hls_maxbufferlength=60&hls_startfromlowestlevel=false&hls_seekfromlowestlevel=false&hls_live_flushurlcache=false&hls_seekmode=ACCURATE&hls_capleveltostage=false&hls_maxlevelcappingmode=downscale" name="flashvars" id="playerayer"></object></div></div> ',
+
+// 1 grind
+
+     '<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><iframe width="100%" height="100%" src='+x+'  scrolling="no" frameborder="0" allowfullscreen="true" id="playerayer"></iframe></div></div>',
+
+
+
+];
+}}
+var M = new ancMedia; M.Play();
+ //]]>
+</script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+  </body>
+</html>
