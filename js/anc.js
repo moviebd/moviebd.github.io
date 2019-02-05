@@ -160,7 +160,7 @@ if(x.indexOf(sv[0]) != -1){x = x.replace(/\#sub=/gi,"&sub=");x = x.replace(/\#su
 
 if(x.indexOf(sv[1]) != -1){x = x.replace(/anc\.mp4\/http/gi,"http");x = x.replace(/\#subtitle=/gi,"&subtitle=");obj = DBOj(x)[0];}	 //mp4
 
-if(x.indexOf(sv[2]) != -1){x = x.replace(/\#sub=/gi,"&sub="); obj = DBOj(x)[0]} //utube
+if(x.indexOf(sv[2]) != -1){x = x.replace(/\#sub=/gi,"&sub="); obj = DBOj(x)[6]} //utube
 if(x.indexOf(sv[3]) != -1){x = x.replace(/\#sub=/gi,"&sub="); obj = DBOj(x)[4]} //fb
 if(x.indexOf(sv[4]) != -1){x = x.replace(/anc\.em\/http/gi,"http");x = x.replace(/\#sub=/gi,"&sub=");obj = DBOj(x)[2];} //embed
 if(x.indexOf(sv[5]) != -1){x = x.replace(/\#sub=/gi,"&sub="); obj = DBOj(x)[2]} //BD-XYZ
@@ -201,7 +201,8 @@ qua = '<div id="logoplayer"></div><';
 //5
 
 '<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><IFRAME SRC="'+x+' " FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>',
-         
+   //6      
+'<div class="tbn_css_frame_wrap"> <div class="tbn_css_frame_wrap_inner bottomshadows"><iframe width="100%" height="100%" src=http://bdix.cf/player/tube?sv='+x+'  scrolling="no" frameborder="0" allowfullscreen="true"></iframe></div></div>',
 
 
 ];
