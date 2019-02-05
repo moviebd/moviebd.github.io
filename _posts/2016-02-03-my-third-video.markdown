@@ -1,6 +1,6 @@
 ---
 title: My Third Video
-video-id: my-third-video
+video-id: moviebd.github.io/source_video/my-third-video
 categories: [second custom playlist, uploads]
 date: 2016-02-03
 ---
