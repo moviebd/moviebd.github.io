@@ -219,12 +219,12 @@ const players = Array.from(document.querySelectorAll('.js-player')).map(player =
             video.innerHTML = ''; // Clear sources
             
             var source1 = document.createElement('source');
-            source1.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + "p.webm";
+            source1.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + ".webm";
             source1.type = 'video/webm; codecs="vp9,opus"';
             video.appendChild(source1);
             
             var source2 = document.createElement('source');
-            source2.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + "p.mp4";
+            source2.src = "{{ site.video-baseurl }}{{ page.video-id }}-" + new_res + ".mp4";
             source2.type = "video/mp4";
             video.appendChild(source2);
             
