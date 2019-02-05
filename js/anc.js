@@ -1,6 +1,5 @@
 <script type='text/javascript'>
 //<![CDATA[ 
-var img_player = document.querySelectorAll('#anc_data img')[0].src
 var ancplayer = {
 	load: {
 		'width': '100%',
