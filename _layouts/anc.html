@@ -59,6 +59,10 @@
                 
                 <div class="video-card video-header">
                     <h1 class="video-title">{{ page.title }}</h1>
+                  
+                  <div class='post-view' expr:data-id='data:post.id'><i class='fa fa-eye'/> <span class='view-load' id='postviews'/></div>
+                
+                  
                     <div class="video-options-wrap">
                         <div class="channel-wrap">
                             <img class="channel-logo" src="{{ site.url }}img/channel-image.png" alt="Channel Logo">
@@ -228,5 +232,10 @@
     <script src="{{ site.url }}js/anc.js"></script>
    
     
+		<script src='//cdn.firebase.com/js/client/2.2.1/firebase.js' type='text/javascript'/>
+<script type='text/javascript'>//<![CDATA[
+$.each($(".post-view[data-id]"),function(a,e){var l=$(e).parent().find("#postviews").addClass("view-load"),i=new Firebase("s-usc1c-nss-229.firebaseio.com/pages/id/"+$(e).attr("data-id"));i.once("value",function(a){var n=a.val(),t=!1;null==n&&(n={},n.value=0,n.url=window.location.href,n.id=$(e).attr("data-id"),t=!0),l.removeClass("view-load").text(n.value),n.value++,"/"!=window.location.pathname&&(t?i.set(n):i.child("value").set(n.value))})});
+//]]>
+</script>
   </body>
 </html>
